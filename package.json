@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "Alumno: Dante",
   "main": "app.js",
- "scripts": {
-  "start": "node app.js",
-  "dev": "nodemon app.js"
-},
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DanteBelli/PatasPerdidasPlataformaDesarrolloBack.git"
@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/DanteBelli/PatasPerdidasPlataformaDesarrolloBack#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mysql2": "^3.14.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
