@@ -1,11 +1,12 @@
 {
   "name": "plataformadesarrolloback",
   "version": "1.0.0",
-  "description": "Alumno: Dante Bellizzi.",
+  "description": "Alumno: Dante",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+ "scripts": {
+  "start": "node app.js",
+  "dev": "nodemon app.js"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DanteBelli/PatasPerdidasPlataformaDesarrolloBack.git"
@@ -13,12 +14,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/DanteBelli/PatasPerdidasPlataformaDesarrolloBack/issues"
   },
   "homepage": "https://github.com/DanteBelli/PatasPerdidasPlataformaDesarrolloBack#readme",
   "dependencies": {
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
