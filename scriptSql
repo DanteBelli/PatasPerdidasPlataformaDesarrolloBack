@@ -1,0 +1,20 @@
+CREATE DATABASE IF NOT EXISTS patasperdidas;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  mail VARCHAR(100) NOT NULL UNIQUE,
+  password VARCHAR(255) NOT NULL,
+  rol VARCHAR(100)not null
+);
+
+CREATE TABLE IF NOT EXISTS mascotas (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  tipo varchar (100) not null,
+  descripcion TEXT,
+  usuariMail VARCHAR(100),
+  lat DECIMAL(10, 6),
+  lng DECIMAL(10, 6),
+  foto VARCHAR(255),
+  nombre VARCHAR(100),
+  FOREIGN KEY (usuario_email) REFERENCES usuarios(email)
+); 
