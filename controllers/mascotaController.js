@@ -1,16 +1,23 @@
-const db = require("../config/db");
-
-exports.listarMascotas = async (req , res) =>{
-    const [rows] = await db.query("SELECT * from mascotas");
-    res.json(rows);
+import db from "../config/db.js";
+export const listarMascotas = async (req,res)=>
+{
+    try{
+        const [mascotas]=await db.query("Select * from mascotas");
+        res.json(mascotas);
+    }catch(error){
+        res.status(400).json({error:"Error"});
+    }
 };
-
-exports.creatMascota = async (req , res) => {
-    const {nombre , tipo , descripcion , usuariMail , ubicacion , foto , lat, lng} = req.body;
-    const [result] = await db.query("INSERT INTO mascotas (tipo , descripcion , usuariMail , ubicacion, foto , nombre , lat , lng)values(?,?,?,?,?,?,?,?)",
-        [tipo , descripcion,usuariMail,ubicacion,foto,nombre,lat,lng]
+export const crearMascota = async (req, res) => {
+  try {
+    const { tipo, descripcion, usuario_email, foto, nombre, lat, lng } = req.body;
+    const [resul] = await db.query(
+      "INSERT INTO mascotas (tipo, descripcion, usuario_email, lat, lng, foto, nombre) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [tipo, descripcion, usuario_email, lat, lng, foto, nombre]
     );
-    res.status(201).json({id:result.insertId});
+    res.status(201).json({ message: "Creación exitosa", id: resul.insertId });
+  } catch (error) {
+    console.error("Error en la creación", error);
+    res.status(500).json({ error: "Error" });
+  }
 };
-
-// falta el editar para cuando se hace el match de mascotas
