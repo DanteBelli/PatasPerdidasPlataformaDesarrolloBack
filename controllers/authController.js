@@ -10,7 +10,7 @@ export const register = async (req ,res)=>{
          if(exist.length>0){
             return res.status(400).json({error:"Error"});
          }
-         await db.query("Insert into usuarios (mail, password,rol)VALUES(?,?,?)"),[mail,password,rol];
+await db.query("INSERT INTO usuarios (mail, password, rol) VALUES (?, ?, ?)", [mail, hashedPass, rol]);
          res.status(201).json({message : "Usuario creado"});
     }catch(error){
         console.error("Error",error);
