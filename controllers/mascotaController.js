@@ -12,7 +12,7 @@ export const crearMascota = async (req, res) => {
   try {
     const { tipo, descripcion, usuario_email, foto, nombre, lat, lng } = req.body;
     const [resul] = await db.query(
-      "INSERT INTO mascotas (tipo, descripcion, usuario_email, lat, lng, foto, nombre) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO mascotas (tipo, descripcion, usuariMail, lat, lng, foto, nombre) VALUES (?, ?, ?, ?, ?, ?, ?)",
       [tipo, descripcion, usuario_email, lat, lng, foto, nombre]
     );
     res.status(201).json({ message: "Creación exitosa", id: resul.insertId });
