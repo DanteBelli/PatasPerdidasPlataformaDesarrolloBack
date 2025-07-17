@@ -1,16 +1,14 @@
 import { error } from "console";
 import db from "../config/db.js";
-import bcrypt from "bcryptjs";
 
 export const register = async (req ,res)=>{
     const {mail , password,rol} = req.body;
     try{
-        const hashedPass = await bcrypt.hash(password,10);
         const [exist] = await db.query("SELECT * FROM usuarios where mail = ?",[mail]);
         if(exist.length>0){
             return res.status(400).json({error:"Error"});
         }
-await db.query("INSERT INTO usuarios (mail, password, rol) VALUES (?, ?, ?)", [mail, hashedPass, rol]);
+await db.query("INSERT INTO usuarios (mail, password, rol) VALUES (?, ?, ?)", [mail, password, rol]);
         res.status(201).json({message : "Usuario creado"});
     }catch(error){
         console.error("Error",error);
