@@ -17,4 +17,17 @@ CREATE TABLE IF NOT EXISTS mascotas (
   foto VARCHAR(255),
   nombre VARCHAR(100),
   FOREIGN KEY (usuariMail) REFERENCES usuarios(mail)
-); 
+);
+
+/*Primero insertar en la tabla usuarios , lo mismo para la creacion*/
+
+INSERT INTO `usuarios` (`id`, `mail`, `password`, `rol`) VALUES 
+('1', 'mascotaperdida@gmail.com', 'prueba123', 'perdida'), 
+('2', 'mascotaencontrada@gmail.com', 'prueba123', 'encontrada'), 
+('3', 'administrador@gmail.com', 'prueba123', 'admin')
+
+
+
+INSERT INTO `mascotas` (`id`, `tipo`, `descripcion`, `usuariMail`, `lat`, `lng`, `foto`, `nombre`) 
+VALUES ('1', 'perdida', 'Se perdio perro simil Salchicha en Saavedra', 'mascotaperdida@gmail.com', '-34.6037', '-58.3816', 'img/mascota2.jpg', 'luna'),
+('2', 'encontrada', 'Se encontro perro simil Salchicha en Saavedra', 'mascotaencontrada@gmail.com', '-35.6037', '-58.3816', 'img/mascota1.jpg', 'perdida')
