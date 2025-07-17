@@ -19,10 +19,10 @@ await db.query("INSERT INTO usuarios (mail, password, rol) VALUES (?, ?, ?)", [m
 };
 
 export const login = async (req , res)=>{
-    const{email,password}=req.body;
+    const{mail,password}=req.body;
 
     try{
-        const [usuarios]=await db.query("select * from usuarios where mail = ?",[email]);
+        const [usuarios]=await db.query("select * from usuarios where mail = ?",[mail]);
         const usuario = usuarios[0];
 
         if(!usuario){
