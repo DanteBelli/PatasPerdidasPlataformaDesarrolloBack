@@ -1,3 +1,4 @@
+import res from "express/lib/response.js";
 import db from "../config/db.js";
 export const listarMascotas = async (req,res)=>
 {
@@ -21,3 +22,16 @@ export const crearMascota = async (req, res) => {
     res.status(500).json({ error: "Error" });
   }
 };
+export const cerrarCaso = async(req,res)=>{
+  const {id1,id2}= req.body;
+  if(!id1 || !id2){
+    return res.status(400).json({error:"Error en la seleccion"});
+  }
+  try{
+    await db.query("delete from mascotas where id IN (?,?)",[id1,id2]);
+    res.json({message:"Caso cerrado correctamente"});
+  }catch(error){
+    console.error("Error al cerrar",error);
+    res.status(500).json({error:"Error"});
+  }
+}
