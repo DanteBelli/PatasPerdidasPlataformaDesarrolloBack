@@ -38,3 +38,16 @@ export const login = async (req , res)=>{
         res.status(500).json({error: "Error"});
     }
 };
+export const obtenerUsuario = async (req,res)=>{
+    const {mail}=req.params;
+    try{
+        const [usuarios]= await db.query("select id , mail , rol from usuarios where mail = ?",[mail]);
+        if(usuarios.length === 0){
+            return res.status(404).json({error: "Usuario no encontrado"});
+        }
+        res.json(usuarios[0]);
+    }catch(error){
+        console.error("Error",error);
+        res.status(500).json({error:"Error"});
+    }
+};
