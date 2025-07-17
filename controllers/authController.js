@@ -17,20 +17,18 @@ await db.query("INSERT INTO usuarios (mail, password, rol) VALUES (?, ?, ?)", [m
         res.status(500).json({error:"error"});
     }
 };
-
 export const login = async (req , res)=>{
     const{mail,password}=req.body;
 
     try{
         const [usuarios]=await db.query("select * from usuarios where mail = ?",[mail]);
         const usuario = usuarios[0];
-
+        /* probando busqueda de error return res.json({message:"Select Correcto" , usuario: {id: usuario.id , email: usuario.mail, password:usuario.password}});*/
         if(!usuario){
             return res.status(404).json({error:"No se encuentra el user"});
         }
-        const passwordOk = await bcrypt.compare(password,usuario.password);
-        if (!passwordOk){
-            return res.status(401).json({error:"No se encuentra el usuario"});
+        if (password !== usuario.password) {
+            return res.status(401).json({ error: "Contraseña incorrecta" });
         }
         res.json({message:"Login Correcto" , usuario: {id: usuario.id , email: usuario.mail}});
     }catch (error){
